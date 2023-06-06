@@ -5,10 +5,11 @@ import BlogCard from "../components/BlogCard";
 import Container from "../components/Container";
 import { getAllBlogs } from "../features/blogs/blogSlice";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 
 const Blog = () => {
-  const blogState = useDispatch((state)=>state?.blog?.blog);
+  const blogState = useSelector((state)=>state?.blog?.blog);
  
   const dispatch = useDispatch();
   
@@ -43,7 +44,7 @@ const Blog = () => {
           <div className="col-9">
             <div className="row">
                 {
-                  blogState?.map((item,index)=> {
+                blogState && blogState?.map((item,index)=> {
                   return (
                     <div className="col-6 mb-3" key={index}>
                   <BlogCard 
@@ -51,7 +52,7 @@ const Blog = () => {
                   title={item?.title} 
                   description={item?.description} 
                   image={item?.images[0]?.url}
-                   date={}
+                   date={moment(item?.created_at).format('MMMM Do YYYY, h:mm:ss a')}
                   />
                   </div>
                   );
