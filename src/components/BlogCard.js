@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const BlogCard = () => {
+const BlogCard = (props) => {
+  const {id, title, description, date, image} =props;
   return (
     <div className="blog-card">
       <div className="card-image">
